@@ -139,3 +139,14 @@ DATABASE_URL=postgresql://root:rootpassword@localhost:5433/cabs_db?schema=public
 REDIS_HOST=localhost
 REDIS_PORT=6379
 ```
+
+
+
+<img width="1916" height="1009" alt="image" src="https://github.com/user-attachments/assets/423866a5-eab8-4608-a794-bda4765e121b" />
+
+
+
+
+<img width="1916" height="1009" alt="image" src="https://github.com/user-attachments/assets/1f45140a-89fe-4c58-8229-c1ac24aeaed0" />
+
+
