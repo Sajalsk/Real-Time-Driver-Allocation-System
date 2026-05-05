@@ -1,0 +1,56 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Rider {
+  id        String   @id @default(uuid())
+  name      String
+  phone     String   @unique
+  rides     Ride[]
+  createdAt DateTime @default(now())
+}
+
+model Driver {
+  id        String   @id @default(uuid())
+  name      String
+  phone     String   @unique
+  status    DriverStatus @default(AVAILABLE) // ONLINE, OFFLINE, IN_RIDE
+  rides     Ride[]
+  createdAt DateTime @default(now())
+}
+
+model Ride {
+  id          String   @id @default(uuid())
+  riderId     String
+  rider       Rider    @relation(fields: [riderId], references: [id])
+  driverId    String?
+  driver      Driver?  @relation(fields: [driverId], references: [id])
+  
+  status      RideStatus @default(REQUESTED) // REQUESTED, SEARCHING, ASSIGNED, TIMEOUT, COMPLETED
+  
+  pickupLat   Float
+  pickupLng   Float
+  dropLat     Float
+  dropLng     Float
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+enum DriverStatus {
+  AVAILABLE
+  OFFLINE
+  IN_RIDE
+}
+
+enum RideStatus {
+  REQUESTED
+  SEARCHING
+  ASSIGNED
+  TIMEOUT
+  COMPLETED
+}
